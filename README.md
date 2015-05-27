@@ -11,4 +11,4 @@ Note: This is being developed on Visual Studio Community (2013). As such it may 
 
 Final Notes
 =====
-No guarantees on the veracity of this software are made. If you wish to enquire on anything regarding this repository, please contact Dylan Lawrence [dlawre14@slu.edu].
+No guarantees on the veracity of this software are made. If you wish to enquire on anything regarding this repository, please contact Dylan Lawrence [dlawre14@slu.edu]
