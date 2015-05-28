@@ -6,4 +6,5 @@ import argparse
 
 #Main
 if __name__ == '__main__':
-  pass
+  parser = argparse.ArgumnetParser(description='Python implementation of strong frechet calculation.')
+  parser.add_argument('-f', type=str, nargs=2 , help='path to segment data (should be two files)')
