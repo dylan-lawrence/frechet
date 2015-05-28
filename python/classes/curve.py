@@ -12,7 +12,10 @@ class Curve:
       return self._points[index]
 
   def getPoints(self):
-      return self._points
+    return self._points
 
   def getPoint(self, index): #just for sake of completeness
-      return self[index]
+    return self[index]
+
+  def getSize(self): #returns number of points (not segments!)
+    return len(self._points)

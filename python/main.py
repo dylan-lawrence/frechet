@@ -45,10 +45,16 @@ def drawCurve(curve, canvas, color='black'):
   canvas.add(path)
     #TODO: draw path
 
-  def setupFreespace(canvas):
-    #function for drawing the grid itself, does not do any real work
-    pass
-
+def setupFreespace(canvas, n1, n2):
+  #function for drawing the grid itself, does not do any real work
+  #n1,n2 are sizes of curves
+  #NOTE: For our use we can assume the canvas is 250 x 250
+  for i in range(n1):
+    path = cs1.Path(cs1.Point(25,25+(200/n1)*i),cs1.Point(225,25+(200/n1)*i))
+    canvas.add(path)
+  for i in range(n2):
+    path = cs1.Path(cs1.Point(25+(200/n2)*i,25),cs1.Point(25+(200/n2)*i,225))
+    canvas.add(path)
 
 #Main
 if __name__ == '__main__':
@@ -72,6 +78,7 @@ if __name__ == '__main__':
      curvecanv = cs1.Canvas(250, 250, None, 'Curves at Runtime')
      drawCurve(curves[0], curvecanv, 'red')
      drawCurve(curves[1], curvecanv, 'blue')
+     setupFreespace(freecanv, curves[0].getSize(), curves[1].getSize())
 
   else:
      pass
