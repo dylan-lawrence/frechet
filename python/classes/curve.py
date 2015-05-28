@@ -11,8 +11,8 @@ class Curve:
     else:
       return self._points[index]
 
-    def getPoints(self):
+  def getPoints(self):
       return self._points
 
-    def getPoint(self, index): #just for sake of completeness
+  def getPoint(self, index): #just for sake of completeness
       return self[index]

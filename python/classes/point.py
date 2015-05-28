@@ -6,8 +6,8 @@ class Point2D:
     self._x = x
     self._y = y
 
-  def getX():
+  def getX(self):
     return self._x
 
-  def getY():
+  def getY(self):
     return self._y
