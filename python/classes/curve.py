@@ -6,7 +6,7 @@ class Curve:
     self._points = points
 
   def __getitem__(self, index):
-    if index >= len(points) or index < 0:
+    if index >= len(self._points) or index < 0:
       raise IndexError("Index out of range")
     else:
       return self._points[index]
