@@ -143,6 +143,9 @@ def setReachability(no1, no2, vFSs, vFSe, hFSs, hFSe, vRTs, vRTe, hRTs, hRTe, a,
         hRTs[j].append(-5)
         hRTe[j].append(-5)
 
+    #rest of the cases in the freespace and reachability
+    
+
 #Main
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(description='Python implementation of strong frechet calculation.')

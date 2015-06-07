@@ -2,6 +2,9 @@ Frechet
 =====
 An implementation for frechet distance calculation.
 
+## Dev Notes
+Sample code has magic numbers -5 for edges cases of freespace, no idea why.
+
 ## Python
 Note: The Python implementation is meant as a sanity check to verify the algorithms are written and running correctly as Python has visual tools that trump anything in C++
 
