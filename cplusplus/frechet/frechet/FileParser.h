@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <vector>
 
 //TODO: Implement parsing methods
 
@@ -13,9 +14,9 @@ private:
 	std::string filecontent;
 
 public:
-	FileParser(std::string filepath);
+	FileParser();
 	~FileParser();
 
-	std::string const getFileContent();
+	double** getParsedContent(std::string filepath, std::string filetype);
 };
 

@@ -72,7 +72,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\boost_1_58_0\lib64-msvc-12.0;$(IncludePath)</IncludePath>
+    <IncludePath>D:\CGAL-4.6\auxiliary\gmp\include;D:\boost_1_58_0\lib64-msvc-12.0;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

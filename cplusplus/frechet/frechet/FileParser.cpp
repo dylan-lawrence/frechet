@@ -2,19 +2,27 @@
 #include "FileParser.h"
 
 
-FileParser::FileParser(std::string filepath)
+FileParser::FileParser()
 {
-	try {
-		std::ifstream in = std::ifstream(filepath);
-		FileParser::filecontent = std::string(static_cast<std::stringstream const&> (std::stringstream() << in.rdbuf()).str());
-	}
-	catch (std::exception &e) {
-		std::cout << "Error opening file " << filepath << std::endl;
-	}
+	
 }
 
-std::string const FileParser::getFileContent() {
-	return FileParser::filecontent;
+double** FileParser::getParsedContent(std::string filepath, std::string filetype)
+{
+	std::string filecontent;
+
+	try
+	{
+		std::ifstream in = std::ifstream(filepath);
+		filecontent = std::string(static_cast<std::stringstream const&> (std::stringstream() << in.rdbuf()).str());
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Error opening file " << filepath << std::endl;
+		return nullptr;
+	}
+
+	std::cout << filecontent << std::endl;
 }
 
 FileParser::~FileParser()
