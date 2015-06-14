@@ -7,24 +7,38 @@ FileParser::FileParser()
 	
 }
 
-double** FileParser::getParsedContent(std::string filepath, std::string filetype)
+std::vector<std::vector<double>> FileParser::getParsedContent(std::string filepath, std::string filetype)
 {
-	std::string filecontent;
-
-	try
+	std::ifstream infile(filepath);
+	std::string content = "d";
+	std::vector<std::string> coords = std::vector<std::string>();
+	
+	//Get file content
+	for (int i = 0; !content.empty(); i++)
 	{
-		std::ifstream in = std::ifstream(filepath);
-		filecontent = std::string(static_cast<std::stringstream const&> (std::stringstream() << in.rdbuf()).str());
-	}
-	catch (std::exception &e)
-	{
-		std::cout << "Error opening file " << filepath << std::endl;
-		return nullptr;
+		std::getline(infile, content);
+		coords.push_back(content);
 	}
 
-	std::cout << filecontent << std::endl;
+	//Place pairs in Vector such that n,0 is the x and n,1 is the y value
+	//NOTE: This currently assumes filetype is always "simple"
+	int count = coords.size();
+	std::vector<std::vector<double>> pairs = std::vector<std::vector<double>>();
+	for (int i = 0; i < count - 1; i++)
+	{
+		int ind = coords[i].find(' ');
+		double x = stod(coords[i].substr(0, ind));
+		double y = stod(coords[i].substr(ind, coords[i].size()));
+
+		pairs.push_back(std::vector<double>());
+		pairs[i].push_back(x);
+		pairs[i].push_back(y);
+	}
+	
+	return pairs;
 }
 
 FileParser::~FileParser()
 {
+
 }

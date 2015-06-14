@@ -17,6 +17,6 @@ public:
 	FileParser();
 	~FileParser();
 
-	double** getParsedContent(std::string filepath, std::string filetype);
+	std::vector<std::vector<double>> getParsedContent(std::string filepath, std::string filetype);
 };
 

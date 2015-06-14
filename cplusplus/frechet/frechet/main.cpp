@@ -105,18 +105,22 @@ int _tmain(int argc, _TCHAR* argv[])
 		catch (std::exception &e)
 		{
 			std::cout << "Error reading command line arguments." << std::endl;
+			return -1;
 		}		
 	}
 	catch (std::exception &e)
 	{
 		std::cout << "An error occured in argument parsing" << std::endl;
+		return -1;
 	}
 
 	std::cout << std::endl << std::endl << "================" << std::endl << "Beginning Program" << std::endl << "================" << std::endl;
 
 	//TODO: Create file reading
 	FileParser fp = FileParser();
-	fp.getParsedContent(file1, filetype);
+	std::vector<std::vector<double>> file1data = fp.getParsedContent(file1, filetype);
+	std::vector<std::vector<double>> file2data = fp.getParsedContent(file2, filetype);
+	
 
 	std::cout << std::endl << "Press enter to exit..." << std::endl;
 	std::cin.get();
