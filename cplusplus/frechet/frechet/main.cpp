@@ -5,14 +5,8 @@
 #include <iostream>
 
 #include <boost/program_options.hpp>
-#include "CGAL\Simple_cartesian.h"
-#include "CGAL\Gmpq.h"
-
 #include "FileParser.h"
-
-typedef CGAL::Simple_cartesian<CGAL::Gmpq> Kernel;
-typedef Kernel::Point_2 Point_2;
-typedef Kernel::Segment_2 Segment_2;
+#include "Frechet.h"
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -121,6 +115,9 @@ int _tmain(int argc, _TCHAR* argv[])
 	std::vector<std::vector<double>> file1data = fp.getParsedContent(file1, filetype);
 	std::vector<std::vector<double>> file2data = fp.getParsedContent(file2, filetype);
 	
+	//Size of the two curves
+	int n1 = file1data.size();
+	int n2 = file2data.size();
 
 	std::cout << std::endl << "Press enter to exit..." << std::endl;
 	std::cin.get();

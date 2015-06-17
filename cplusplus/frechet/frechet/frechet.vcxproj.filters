@@ -27,6 +27,9 @@
     <ClInclude Include="FileParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Frechet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -36,6 +39,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FileParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Frechet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
