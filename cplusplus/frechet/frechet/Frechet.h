@@ -18,10 +18,13 @@ class Frechet
 {
 
 public:
-	Frechet(int size1, int size2);
+	Frechet(int size1, int size2, Curve c1, Curve c2);
 	~Frechet();
 	static Point_2 GeneratePoint(std::vector<double> xy);
 	static Curve GenerateCurve(std::vector<Point_2> points);
+
+	void CalculateFreespace(Segment_2 &segment, Point_2 &point, double &start, double &end);
+	void SetFreespace();
 
 	static const double WHITE;
 	static const double BLACK;
@@ -41,5 +44,7 @@ private:
 	double **hRTe;
 
 	int n1, n2;
+	
+	Curve curve1, curve2;
 };
 

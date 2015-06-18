@@ -21,29 +21,58 @@ Curve Frechet::GenerateCurve(std::vector<Point_2> points)
 	return c;
 }
 
-Frechet::Frechet(int size1, int size2)
+Frechet::Frechet(int size1, int size2, Curve c1, Curve c2)
 {
-	Frechet::n1, Frechet::n2 = size1, size2; //size of curve1 and curve2
+	n1, n2 = size1, size2; //size of curve1 and curve2
+	curve1, curve2 = c1, c2;
 
 	//Allocate memory for all of our arrays
-	hFSs = new double*[Frechet::n2];
-	hFSe = new double*[Frechet::n2];
-	hRTs = new double*[Frechet::n2];
-	hRTe = new double*[Frechet::n2];
+	hFSs = new double*[n2];
+	hFSe = new double*[n2];
+	hRTs = new double*[n2];
+	hRTe = new double*[n2];
 
-	for (int i = 0; i < Frechet::n2; i++)
+	for (int i = 0; i < n2; i++)
 	{
-		hFSs[i] = new double[Frechet::n1 - 1];
-		hFSe[i] = new double[Frechet::n1 - 1];
-		hRTs[i] = new double[Frechet::n1 - 1];
-		hRTe[i] = new double[Frechet::n1 - 1];
+		hFSs[i] = new double[n1 - 1];
+		hFSe[i] = new double[n1 - 1];
+		hRTs[i] = new double[n1 - 1];
+		hRTe[i] = new double[n1 - 1];
 	}
+
+	vFSs = new double*[n2 - 1];
+	vFSe = new double*[n2 - 1];
+	vRTs = new double*[n2 - 1];
+	vRTe = new double*[n2 - 1];
+
+	for (int i = 0; i < n2 - 1; i++)
+	{
+		vFSs[i] = new double[n1];
+		vFSe[i] = new double[n1];
+		vRTs[i] = new double[n1];
+		vRTe[i] = new double[n1];
+	}
+}
+
+//Drives the main building of the freespace
+void Frechet::SetFreespace()
+{
+	//Fill in horizontal freespace
+	for (int i = 0; i < n1 - 1; i++)
+	{
+		for (int j = 0; j < n2 - 1; j++)
+		{
+			Frechet::CalculateFreespace(Segment_2(curve1[i], curve1[i + 1]), curve2[j], hFSs[j][i], hFSe[j][i]);
+		}
+	}
+
+	//Fill in vertical freespace
 }
 
 Frechet::~Frechet()
 {
 	//Deallocate all arrays
-	for (int i = 0; i < Frechet::n2; i++)
+	for (int i = 0; i < n2; i++)
 	{
 		delete hFSs[i];
 		delete hFSe[i];
