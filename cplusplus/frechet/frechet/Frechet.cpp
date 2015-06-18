@@ -54,6 +54,11 @@ Frechet::Frechet(int size1, int size2, Curve c1, Curve c2)
 	}
 }
 
+void Frechet::CalculateFreespace(Segment_2 &segment, Point_2 &point, double &start, double & end)
+{
+	return;
+}
+
 //Drives the main building of the freespace
 void Frechet::SetFreespace()
 {
