@@ -1,8 +1,11 @@
 #pragma once
 
+//Tokens for reachability
+
 #include <vector>
 
 #include "CGAL\Simple_cartesian.h"
+#include "gmp.h"
 #include "CGAL\Gmpq.h"
 
 typedef CGAL::Simple_cartesian<CGAL::Gmpq> Kernel;
@@ -15,7 +18,28 @@ class Frechet
 {
 
 public:
-	Frechet();
+	Frechet(int size1, int size2);
 	~Frechet();
+	static Point_2 GeneratePoint(std::vector<double> xy);
+	static Curve GenerateCurve(std::vector<Point_2> points);
+
+	static const double WHITE;
+	static const double BLACK;
+	static const double MININF;
+
+private:
+	//Freespace diagram representation
+	double **vFSs;
+	double **vFSe;
+	double **hFSs;
+	double **hFSe;
+
+	//Reachability representation
+	double **vRTs;
+	double **vRTe;
+	double **hRTs;
+	double **hRTe;
+
+	int n1, n2;
 };
 

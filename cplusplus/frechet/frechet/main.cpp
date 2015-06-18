@@ -119,6 +119,24 @@ int _tmain(int argc, _TCHAR* argv[])
 	int n1 = file1data.size();
 	int n2 = file2data.size();
 
+	//Build Curve objects
+	std::vector<Point_2> ps1 = std::vector<Point_2>();
+	std::vector<Point_2> ps2 = std::vector<Point_2>();
+
+	for (std::vector<double> &xy : file1data)
+	{
+		ps1.push_back(Frechet::GeneratePoint(xy));
+	}
+	for (std::vector<double> &xy : file2data)
+	{
+		ps2.push_back(Frechet::GeneratePoint(xy));
+	}
+
+	Curve curve1 = Frechet::GenerateCurve(ps1);
+	Curve curve2 = Frechet::GenerateCurve(ps2);
+
+
+
 	std::cout << std::endl << "Press enter to exit..." << std::endl;
 	std::cin.get();
 
