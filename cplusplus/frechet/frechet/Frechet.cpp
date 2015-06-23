@@ -21,10 +21,11 @@ Curve Frechet::GenerateCurve(std::vector<Point_2> points)
 	return c;
 }
 
-Frechet::Frechet(int size1, int size2, Curve c1, Curve c2)
+Frechet::Frechet(double &epsilon, int &size1, int &size2, Curve &c1, Curve &c2)
 {
 	n1, n2 = size1, size2; //size of curve1 and curve2
 	curve1, curve2 = c1, c2;
+	EPSILON = CGAL::Gmpq(epsilon);
 
 	//Allocate memory for all of our arrays
 	hFSs = new double*[n2];
@@ -56,6 +57,7 @@ Frechet::Frechet(int size1, int size2, Curve c1, Curve c2)
 
 void Frechet::CalculateFreespace(Segment_2 &segment, Point_2 &point, double &start, double & end)
 {
+	Circle_2 c(point, EPSILON);
 	return;
 }
 
@@ -73,6 +75,41 @@ void Frechet::SetFreespace()
 
 	//Fill in vertical freespace
 }
+
+/* Setters */
+
+void Frechet::SetEpsilon(double &epsilon)
+{
+	EPSILON = CGAL::Gmpq(epsilon);
+}
+
+/* Getters */
+
+const CGAL::Gmpq Frechet::GetEpsilon()
+{
+	return EPSILON;
+}
+
+const int Frechet::GetSize1()
+{
+	return n1;
+}
+
+const int Frechet::GetSize2()
+{
+	return n2;
+}
+
+const Curve Frechet::GetCurve1()
+{
+	return curve1;
+}
+
+const Curve Frechet::GetCurve2()
+{
+	return curve2;
+}
+
 
 Frechet::~Frechet()
 {
