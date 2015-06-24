@@ -135,7 +135,14 @@ int _tmain(int argc, _TCHAR* argv[])
 	Curve curve1 = Frechet::GenerateCurve(ps1);
 	Curve curve2 = Frechet::GenerateCurve(ps2);
 
+	//Testing circle
+	Frechet frechet = Frechet(epsilon, n1, n2, curve1, curve2);
 
+	Segment_2 s(Point_2(10, 10), Point_2(5, 5));
+	Point_2 p(8, 4);
+
+	double start, end;
+	frechet.CalculateFreespace(s, p, start, end);
 
 	std::cout << std::endl << "Press enter to exit..." << std::endl;
 	std::cin.get();

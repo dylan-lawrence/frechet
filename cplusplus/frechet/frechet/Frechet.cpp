@@ -23,8 +23,10 @@ Curve Frechet::GenerateCurve(std::vector<Point_2> points)
 
 Frechet::Frechet(double &epsilon, int &size1, int &size2, Curve &c1, Curve &c2)
 {
-	n1, n2 = size1, size2; //size of curve1 and curve2
-	curve1, curve2 = c1, c2;
+	n1 = size1;
+	n2 = size2;
+	curve1 = c1;
+	curve2 = c2;
 	EPSILON = CGAL::Gmpq(epsilon);
 
 	//Allocate memory for all of our arrays
@@ -53,11 +55,17 @@ Frechet::Frechet(double &epsilon, int &size1, int &size2, Curve &c1, Curve &c2)
 		vRTs[i] = new double[n1];
 		vRTe[i] = new double[n1];
 	}
+
 }
 
 void Frechet::CalculateFreespace(Segment_2 &segment, Point_2 &point, double &start, double & end)
 {
-	Circle_2 c(point, EPSILON);
+	/* TODO: Implement CGAL style segment/circle interesection, currently using the pure math method */
+
+	/* Pure Math Method */
+
+	//TODO
+
 	return;
 }
 
@@ -113,17 +121,5 @@ const Curve Frechet::GetCurve2()
 
 Frechet::~Frechet()
 {
-	//Deallocate all arrays
-	for (int i = 0; i < n2; i++)
-	{
-		delete hFSs[i];
-		delete hFSe[i];
-		delete hRTs[i];
-		delete hRTs[i];
-	}
-
-	delete hFSs;
-	delete hFSe;
-	delete hRTs;
-	delete hRTs;
+	//TODO: Delete all arrays
 }
