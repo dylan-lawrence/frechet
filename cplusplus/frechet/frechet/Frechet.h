@@ -4,23 +4,17 @@
 
 //#include "CGAL\Simple_cartesian.h"
 
+/*
 #include "CGAL\Exact_circular_kernel_2.h"
 #include "CGAL\Circular_kernel_intersections.h"
+*/
+#include "CGAL\Simple_cartesian.h"
 #include "gmp.h"
 #include "CGAL\Gmpq.h"
 
-/*
 typedef CGAL::Simple_cartesian<CGAL::Gmpq> Kernel;
 typedef Kernel::Point_2 Point_2;
 typedef Kernel::Segment_2 Segment_2;
-typedef Kernel::Circle_2 Circle_2;
-*/
-
-typedef CGAL::Exact_circular_kernel_2 CircK;
-typedef CGAL::Point_2<CircK> Point_2;
-typedef CGAL::Segment_2<CircK> Segment_2;
-typedef CGAL::Line_arc_2<CircK> Line_Arc_2;
-typedef CGAL::Circle_2<CircK> Circle_2;
 
 typedef std::vector<Point_2> Curve; //Simple method of storing multiple line segments
 
@@ -35,6 +29,8 @@ public:
 
 	void CalculateFreespace(Segment_2 &segment, Point_2 &point, double &start, double &end);
 	void SetFreespace();
+	//SetReachability
+	//FindPath
 
 	//Setters
 	void SetEpsilon(double &epsilon);

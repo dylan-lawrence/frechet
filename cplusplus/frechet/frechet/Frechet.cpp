@@ -64,7 +64,45 @@ void Frechet::CalculateFreespace(Segment_2 &segment, Point_2 &point, double &sta
 
 	/* Pure Math Method */
 
-	//TODO
+	CGAL::Gmpq xdiff, ydiff, root, b, divisor, t1, t2, q;
+
+	xdiff = segment.target().x() - segment.source().x();
+	ydiff = segment.target().y() - segment.source().y();
+
+	divisor = xdiff*xdiff + ydiff*ydiff;
+
+	if (divisor == 0)
+	{
+		std::cout << "divisor is zero" << std::endl;
+	}
+
+	b = (point.x() - segment.source().x()) * xdiff + (point.y() - segment.source().y()) * ydiff;
+	q = (segment.source().x()*segment.source().x() + segment.source().y()*segment.source().y() + point.x()*point.x() + point.y() * point.y() - 2 * segment.source().x() * point.x() - 2 * segment.source().y() * point.y() - EPSILON*EPSILON) * divisor;
+	root = b*b - q;
+
+	if (root < 0)
+	{
+		start = end = 1;
+		return;
+	}
+
+	root = (CGAL::Gmpq) sqrt(root.to_double()); //Rationals cannot be return from a square root, this might be problematic
+
+	t2 = (b + root) / divisor;
+	t1 = (b - root) / divisor;
+
+	if (t1 < 0) t1 = 0;
+	if (t2 < 0) t2 = 0;
+	if (t1 > 1) t1 = 1;
+	if (t2 > 1) t2 = 1;
+
+	start = t1.to_double();
+	end = t2.to_double();
+
+	if (start == end)
+	{
+		start = end = -1;
+	}
 
 	return;
 }
@@ -82,6 +120,16 @@ void Frechet::SetFreespace()
 	}
 
 	//Fill in vertical freespace
+	for (int i = 0; i < n1 - 1; i++)
+	{
+		for (int j = 0; j < n2 - 1; j++)
+		{
+			Frechet::CalculateFreespace(Segment_2(curve2[j], curve2[j + 1]), curve1[i], vFSs[j][i], vFSe[j][i]);
+		}
+	}
+
+
+
 }
 
 /* Setters */
