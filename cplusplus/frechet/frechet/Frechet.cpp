@@ -128,8 +128,82 @@ void Frechet::SetFreespace()
 		}
 	}
 
+}
 
+void Frechet::SetReachability()
+{
+	//edge cases
+	for (int i = 0; i < n1; i++)
+	{
+		vRTs[0][i] = vFSs[0][i];
+		vRTe[0][i] = vFSe[0][i];
+		for (int j = 1; j < n2 - 1; j++)
+		{
+			vRTs[j][i] = MININF;
+			vRTe[j][i] = MININF;
+		}
+	}
 
+	for (int j = 0; j < n2; j++)
+	{
+		hRTs[j][0] = hFSs[j][0];
+		hRTe[j][0] = hFSe[j][0];
+		for (int i = 0; i < n1 - 1; i++)
+		{
+			hRTs[j][i] = MININF;
+			hRTe[j][i] = MININF;
+		}
+	}
+
+	//normal case
+	for (int i = 0; i < n1 - 1; i++)
+	{
+		for (int j = 0; j < n2 - 1; j++)
+		{
+			if (vRTs[j][i] >= 0 && vRTe[j][i] > vRTs[j][i])
+			{
+				hRTs[j + 1][i] = hFSs[j + 1][i];
+				hRTe[j + 1][i] = hFSe[j + 1][i];
+			}
+			else 
+			{
+				if (hRTs[j][i] >= 0 && hRTe[j][i] > hRTs[j][i])
+				{
+					hRTs[j + 1][i] = std::fmax(hFSs[j + 1][i], hRTs[j][i]);
+					hRTe[j + 1][i] = hFSe[j + 1][i];
+
+					if (hRTe[j + 1][i] <= hRTe[j + 1][i])
+					{
+						hRTs[j + 1][i] = hRTe[j + 1][i] = BLACK;
+					}
+				}
+				else {
+					hRTs[j + 1][i] = hRTe[j + 1][i] = BLACK;
+				}
+			}
+			if (hRTs[j][i] >= 0 && hRTe[j][i] > hRTs[j][i])
+			{
+				vRTs[j][i + 1] = vFSs[j][i + 1];
+				vRTe[j][i + 1] = vFSe[j][i + 1];
+			}
+			else 
+			{
+				if (vRTs[j][i] >= 0 && vRTe[j][i] > vRTs[j][i]) {
+					vRTs[j][i + 1] = std::fmax(vFSs[j][i + 1], vRTs[j][i + 1]);
+					vRTe[j][i + 1] = vFSe[j][i + 1];
+
+					if (vRTe[j][i + 1] <= vRTs[j][i + 1])
+					{
+						vRTe[j][i + 1] = vRTs[j][i + 1] = BLACK;
+					}
+				}
+				else 
+				{
+					vRTe[j][i + 1] = vRTs[j][i + 1] = BLACK;
+				}
+			}
+		}
+	}
 }
 
 /* Setters */

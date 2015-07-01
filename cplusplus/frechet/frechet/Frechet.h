@@ -29,7 +29,7 @@ public:
 
 	void CalculateFreespace(Segment_2 &segment, Point_2 &point, double &start, double &end);
 	void SetFreespace();
-	//SetReachability
+	void SetReachability();
 	//FindPath
 
 	//Setters

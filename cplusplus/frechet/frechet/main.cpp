@@ -35,6 +35,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			//("filetype,t", po::value<std::string>(), "The format of the curve files.")
 			("epsilon,e", po::value<double>(), "The epsilon to use for calculation.")
 			("verbose,v", po::value<int>(), "Activate verbose logging.");
+		//TODO: Add binary search options
 
 		po::variables_map vm;
 		try
