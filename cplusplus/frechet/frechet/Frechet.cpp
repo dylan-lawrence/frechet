@@ -165,7 +165,7 @@ void Frechet::SetReachability()
 				hRTs[j + 1][i] = hFSs[j + 1][i];
 				hRTe[j + 1][i] = hFSe[j + 1][i];
 			}
-			else 
+			else
 			{
 				if (hRTs[j][i] >= 0 && hRTe[j][i] > hRTs[j][i])
 				{
@@ -186,7 +186,7 @@ void Frechet::SetReachability()
 				vRTs[j][i + 1] = vFSs[j][i + 1];
 				vRTe[j][i + 1] = vFSe[j][i + 1];
 			}
-			else 
+			else
 			{
 				if (vRTs[j][i] >= 0 && vRTe[j][i] > vRTs[j][i]) {
 					vRTs[j][i + 1] = std::fmax(vFSs[j][i + 1], vRTs[j][i + 1]);
@@ -197,13 +197,25 @@ void Frechet::SetReachability()
 						vRTe[j][i + 1] = vRTs[j][i + 1] = BLACK;
 					}
 				}
-				else 
+				else
 				{
 					vRTe[j][i + 1] = vRTs[j][i + 1] = BLACK;
 				}
 			}
 		}
 	}
+}
+
+int Frechet::FindPath()
+{
+	if (vRTe[n2 - 2][n1 - 1] == 1 && hRTe[n2 - 1][n1 - 2] == 1 && (vRTs[n2 - 1][n1 - 2] < vRTe[n2 - 2][n1 - 1] || hRTs[n2 - 1][n1 - 2] < hRTe[n2 - 1][n1 - 2]))
+	{
+		if (vRTs[0][0] == 0 && hRTs[0][0] == 0 && (vRTs[0][0] < vRTe[0][0] || hRTs[0][0] < hRTe[0][0]))
+		{
+			return 3; //path confirmed to exist
+		}
+	}
+	return 2; //no path exists
 }
 
 /* Setters */

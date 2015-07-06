@@ -30,7 +30,7 @@ public:
 	void CalculateFreespace(Segment_2 &segment, Point_2 &point, double &start, double &end);
 	void SetFreespace();
 	void SetReachability();
-	//FindPath
+	int FindPath(); //needs to be a bool eventually
 
 	//Setters
 	void SetEpsilon(double &epsilon);
