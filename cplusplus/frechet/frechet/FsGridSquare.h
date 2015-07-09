@@ -8,9 +8,9 @@ public:
 	FsGridSquare();
 	~FsGridSquare();
 
-	Edge top;
-	Edge bottom;
-	Edge left;
-	Edge right;
+	Edge* top;
+	Edge* bottom;
+	Edge* left;
+	Edge* right;
 };
 

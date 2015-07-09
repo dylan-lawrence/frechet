@@ -26,7 +26,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	typedef std::pair<Circular_arc_point_2, unsigned> IntersectOut;
 
 	Line_2 l(Point_2(2, 4), Point_2(6, 8));
-	Circle_2 c(Point_2(3, 7),3);
+	Circle_2 c(Point_2(3, 7),9); //Note this constructor takes squared radius, so this is a circle at (3,7) with radius 3
 
 	std::vector<IntersectOut> output;
 
