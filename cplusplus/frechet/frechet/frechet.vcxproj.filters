@@ -36,6 +36,15 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FsGridSquare.h">
+      <Filter>Frechet\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeSpace.h">
+      <Filter>Frechet\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Edge.h">
+      <Filter>Frechet\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -43,6 +52,15 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FsGridSquare.cpp">
+      <Filter>Frechet\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeSpace.cpp">
+      <Filter>Frechet\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Edge.cpp">
+      <Filter>Frechet\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

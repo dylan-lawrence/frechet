@@ -12,6 +12,8 @@
 
 #include <vector>
 
+#include "FreeSpace.h"
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 
@@ -42,6 +44,8 @@ int _tmain(int argc, _TCHAR* argv[])
 			std::cout << CGAL::to_double(output[1].first.x()) << ", " << CGAL::to_double(output[1].first.y()) << std::endl;
 		}
 	}
+
+	FsGridSquare g = FsGridSquare();
 
 	std::cout << "Press enter to exit..." << std::endl;
 	std::cin.get();
