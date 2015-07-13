@@ -4,25 +4,25 @@
 
 Edge::Edge()
 {
-
+	start = end = 0;
 }
 
-void Edge::SetStart(CGAL::Gmpq input)
+void Edge::SetStart(double input)
 {
 	start = input;
 }
 
-void Edge::SetEnd(CGAL::Gmpq input)
+void Edge::SetEnd(double input)
 {
 	end = input;
 }
 
-CGAL::Gmpq Edge::GetStart()
+double Edge::GetStart()
 {
 	return start;
 }
 
-CGAL::Gmpq Edge::GetEnd()
+double Edge::GetEnd()
 {
 	return end;
 }

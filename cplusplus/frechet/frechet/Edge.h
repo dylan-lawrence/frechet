@@ -9,13 +9,13 @@ public:
 	Edge();
 	~Edge();
 
-	void SetStart(CGAL::Gmpq input);
-	void SetEnd(CGAL::Gmpq input);
-	CGAL::Gmpq GetStart();
-	CGAL::Gmpq GetEnd();
+	void SetStart(double input);
+	void SetEnd(double input);
+	double GetStart();
+	double GetEnd();
 
 private:
-	CGAL::Gmpq start;
-	CGAL::Gmpq end;
+	double start;
+	double end;
 };
 

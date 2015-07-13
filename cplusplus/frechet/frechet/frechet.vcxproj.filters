@@ -45,6 +45,9 @@
     <ClInclude Include="Edge.h">
       <Filter>Frechet\Public</Filter>
     </ClInclude>
+    <ClInclude Include="frechet_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

@@ -1,5 +1,6 @@
 #pragma once
 #include "Edge.h"
+#include <iostream>
 
 class FsGridSquare
 {
@@ -12,5 +13,7 @@ public:
 	Edge* bottom;
 	Edge* left;
 	Edge* right;
+	friend std::ostream& operator<< (std::ostream& os, const FsGridSquare& gs);
+
 };
 

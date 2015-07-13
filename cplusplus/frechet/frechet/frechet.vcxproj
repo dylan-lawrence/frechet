@@ -148,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Edge.h" />
+    <ClInclude Include="frechet_types.h" />
     <ClInclude Include="FreeSpace.h" />
     <ClInclude Include="FsGridSquare.h" />
     <ClInclude Include="resource.h" />
