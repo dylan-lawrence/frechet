@@ -59,6 +59,9 @@ int _tmain(int argc, _TCHAR* argv[])
 	};
 
 	FreeSpace fs = FreeSpace(5, 4, curve1, curve2, epsilon);
+	fs.CalculateSquare(0, 0);
+
+	std::cout << fs.GetSquare(0, 0) << std::endl;
 
 	std::cout << "Press enter to exit..." << std::endl;
 

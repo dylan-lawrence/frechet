@@ -12,7 +12,7 @@ public:
 
 	FsGridSquare GetSquare(int n1i, int n2i);
 	void CalculateSquare(int n1i, int n2i);
-	Edge CalculateEdge(Point_2 p, Point_2 curvep1, Point_2 curvep2);
+	Edge* CalculateEdge(Point_2 p, Point_2 curvep1, Point_2 curvep2);
 
 	static double PercentAlongCurve(Circular_arc_point_2 ap, Point_2 curvep1, Point_2 curvep2);
 
