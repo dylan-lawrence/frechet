@@ -45,21 +45,26 @@ int _tmain(int argc, _TCHAR* argv[])
 	std::cin >> epsilon;
 
 	Point_2 curve1[5] = {
-		Point_2(1,3),
+		Point_2(1,2),
 		Point_2(2,4),
 		Point_2(3,1),
 		Point_2(4,2),
 		Point_2(5,7)
 	};
 	Point_2 curve2[4] = {
-		Point_2(1, 1),
+		Point_2(1, 3),
 		Point_2(2, 6),
 		Point_2(3, 3),
 		Point_2(4, 1),
 	};
 
 	FreeSpace fs = FreeSpace(5, 4, curve1, curve2, epsilon);
-	fs.CalculateSquare(0, 0);
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 3; j++)
+		{
+			fs.CalculateSquare(i, j);
+		}
+	}
 
 	std::cout << fs.GetSquare(0, 0) << std::endl;
 
