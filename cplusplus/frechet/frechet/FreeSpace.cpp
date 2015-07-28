@@ -84,10 +84,17 @@ Edge* FreeSpace::CalculateEdge(Point_2 p, Point_2 curvep1, Point_2 curvep2) //cu
 
 	CGAL::Gmpq determinant = b_t * b_t - 4 * a_t * c_t;
 
+	std::cout << "a_t: " << CGAL::to_double(a_t) << std::endl;
+	std::cout << "b_t: " << CGAL::to_double(b_t) << std::endl;
+	std::cout << "c_t: " << CGAL::to_double(c_t) << std::endl;
+	std::cout << "determinant is: " << CGAL::to_double(determinant) << std::endl;
+
 	if (determinant >= 0)
 	{
 		edge->SetEnd((CGAL::to_double(-b_t) + std::sqrt(CGAL::to_double(determinant)))/CGAL::to_double(2 * a_t));
 		edge->SetStart((CGAL::to_double(-b_t) - std::sqrt(CGAL::to_double(determinant))) / CGAL::to_double(2 * a_t));
+
+		std::cout << "Start: " << edge->GetStart() << ", End: " << edge->GetEnd() << std::endl;
 	}
 	else
 	{
