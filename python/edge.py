@@ -11,24 +11,14 @@ def Calculate(radius, p, cp1, cp2):
   xdiff = cp2.x - cp1.x
   ydiff = cp2.y - cp1.y
 
-  print ("xdiff: " + str(xdiff))
-  print ("ydiff: " + str(ydiff))
-
   b = 2 * ((cp1.x - p.x) * xdiff + (cp1.y - p.y) * ydiff)
   c = (cp1.x - p.x)**2 + (cp1.y - p.y)**2 -radius**2
   a = xdiff**2 + ydiff**2
 
   det = b**2 - 4*a*c
 
-  print ("a: " + str(a))
-  print ("b: " + str(b))
-  print ("c: " + str(c))
-  print ("det: " + str(det))
-
-  print ("sqrt det: " + str(sqrt(det)))
-  print ("-b + sqrt det: " + str(-b + sqrt(det)))
-  print ("2*a: " + str(2*a))
-  print ("the whole thing: " + str((-b + sqrt(det))/(2*a)))
+  if det < 0:
+    return 'Determinant is less than 0, edge not reachable'
 
   end = (-b + sqrt(det))/(2*a)
   start = (-b - sqrt(det))/(2*a)
