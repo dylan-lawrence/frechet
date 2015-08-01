@@ -44,29 +44,33 @@ int _tmain(int argc, _TCHAR* argv[])
 	std::cout << "Enter an epsilon value: ";
 	std::cin >> epsilon;
 
-	Point_2 curve1[5] = {
-		Point_2(1,2),
-		Point_2(2,4),
-		Point_2(3,1),
-		Point_2(4,2),
-		Point_2(5,7)
+	Point_2 curve1[6] = {
+		Point_2(1,7),
+		Point_2(3,2),
+		Point_2(4,5),
+		Point_2(6,3),
+		Point_2(8,6),
+		Point_2(9,1)
 	};
-	Point_2 curve2[4] = {
-		Point_2(1, 3),
-		Point_2(2, 6),
-		Point_2(3, 3),
-		Point_2(4, 1),
+	Point_2 curve2[6] = {
+		Point_2(2, 3),
+		Point_2(4, 6),
+		Point_2(5, 2),
+		Point_2(6, 5),
+		Point_2(7, 2),
+		Point_2(10, 3)
 	};
 
-	FreeSpace fs = FreeSpace(5, 4, curve1, curve2, epsilon);
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 3; j++)
+	FreeSpace fs = FreeSpace(6, 6, curve1, curve2, epsilon);
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < 5; j++)
 		{
 			fs.CalculateSquare(i, j);
 		}
 	}
 
 	std::cout << fs.GetSquare(0, 0) << std::endl;
+	std::cout << fs.GetSquare(0, 1) << std::endl;
 
 	std::cout << "Press enter to exit..." << std::endl;
 

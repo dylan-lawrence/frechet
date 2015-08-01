@@ -70,7 +70,6 @@ void FreeSpace::CalculateSquare(int n1i, int n2i)
 
 Edge* FreeSpace::CalculateEdge(Point_2 p, Point_2 curvep1, Point_2 curvep2) //curvep1, curvep2 represent the start/end of a segment.
 {
-	std::cout << "calculating edge for line from " << curvep1 << " to " << curvep2 << " and a circle at " << p << " with radius " << epsilon << std::endl;
 	Edge* edge = new Edge();
 
 	CGAL::Gmpq xdiff = curvep2.x() - curvep1.x();
@@ -81,24 +80,32 @@ Edge* FreeSpace::CalculateEdge(Point_2 p, Point_2 curvep1, Point_2 curvep2) //cu
 	CGAL::Gmpq a_t = xdiff*xdiff + ydiff*ydiff;
 
 	//check a_t value if 0
+	if (a_t == 0)
+	{
+		std::cout << "a_t is 0" << std::endl;
+	}
 
 	CGAL::Gmpq determinant = b_t * b_t - 4 * a_t * c_t;
 
-	std::cout << "a_t: " << CGAL::to_double(a_t) << std::endl;
-	std::cout << "b_t: " << CGAL::to_double(b_t) << std::endl;
-	std::cout << "c_t: " << CGAL::to_double(c_t) << std::endl;
-	std::cout << "determinant is: " << CGAL::to_double(determinant) << std::endl;
-
 	if (determinant >= 0)
 	{
-		edge->SetEnd((CGAL::to_double(-b_t) + std::sqrt(CGAL::to_double(determinant)))/CGAL::to_double(2 * a_t));
-		edge->SetStart((CGAL::to_double(-b_t) - std::sqrt(CGAL::to_double(determinant))) / CGAL::to_double(2 * a_t));
+		double end = (CGAL::to_double(-b_t) + std::sqrt(CGAL::to_double(determinant))) / CGAL::to_double(2 * a_t);
+		double start = (CGAL::to_double(-b_t) - std::sqrt(CGAL::to_double(determinant))) / CGAL::to_double(2 * a_t);
 
-		std::cout << "Start: " << edge->GetStart() << ", End: " << edge->GetEnd() << std::endl;
+		if (start == end && (start < 0 || start > 1)) //Single intersection, off segment
+		{
+			edge->SetEnd(-1);
+			edge->SetStart(-1);
+		}
+
+		edge->SetEnd(end);
+		edge->SetStart(start);
 	}
 	else
 	{
 		std::cout << "determinant is 0" << std::endl;
+		edge->SetEnd(-1);
+		edge->SetStart(-1);
 	}
 
 	return edge;
