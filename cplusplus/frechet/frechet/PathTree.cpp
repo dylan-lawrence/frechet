@@ -10,9 +10,9 @@ PathTree::PathTree(FreeSpace *freespace_diagram)
 	root->incoming_edge = nullptr;
 }
 
-std::vector<double> PathTree::FindPath()
+std::vector<PathTree::PathNode> PathTree::FindPath()
 {
-	std::vector<double> path = std::vector<double>();
+	std::vector<PathNode> path = std::vector<PathNode>();
 	n1max = diagram->n1 - 2;
 	n2max = diagram->n2 - 2;
 
@@ -32,9 +32,7 @@ std::vector<double> PathTree::FindPath()
 	Node* n = Traverse(root, path);
 	while (n->parent != nullptr)
 	{
-		std::cout << n->n1 << "," << n->n2;
-		
-		//TODO: traverse path back properly
+		path.push_back(PathNode(n->n1, n->n2, (n->incoming_edge->GetStart() + n->incoming_edge->GetEnd()) / 2.0));
 
 		n = n->parent;
 	}
@@ -54,7 +52,7 @@ bool PathTree::Passable(Edge* edge)
 	}
 }
 
-PathTree::Node* PathTree::Traverse(Node* node, std::vector<double> &path)
+PathTree::Node* PathTree::Traverse(Node* node, std::vector<PathTree::PathNode> &path)
 {
 	//Look both right and up
 	if (node->n1 < n1max && node->n2 < n2max)
@@ -68,7 +66,8 @@ PathTree::Node* PathTree::Traverse(Node* node, std::vector<double> &path)
 			node->rightedge->n1 = node->n1;
 			node->rightedge->n2 = node->n2 + 1;
 			node->rightedge->parent = node;
-			node->incoming_edge = diagram->GetSquare(node->n1, node->n2).right;
+			std::cout << "assigning edge " << diagram->GetSquare(node->n1, node->n2).right->GetStart() << " -- " << diagram->GetSquare(node->n1, node->n2).right->GetEnd() << std::endl;
+			node->rightedge->incoming_edge = diagram->GetSquare(node->n1, node->n2).right;
 			return Traverse(node->rightedge, path);
 		}
 		//Make top
@@ -78,7 +77,8 @@ PathTree::Node* PathTree::Traverse(Node* node, std::vector<double> &path)
 			node->topedge->n1 = node->n1 + 1;
 			node->topedge->n2 = node->n2;
 			node->topedge->parent = node;
-			node->incoming_edge = diagram->GetSquare(node->n1, node->n2).top;
+			std::cout << "assigning edge " << diagram->GetSquare(node->n1, node->n2).top->GetStart() << " -- " << diagram->GetSquare(node->n1, node->n2).top->GetEnd() << std::endl;
+			node->topedge->incoming_edge = diagram->GetSquare(node->n1, node->n2).top;
 			return Traverse(node->topedge, path);
 		}
 	}
@@ -92,7 +92,8 @@ PathTree::Node* PathTree::Traverse(Node* node, std::vector<double> &path)
 			node->topedge->n1 = node->n1 + 1;
 			node->topedge->n2 = node->n2;
 			node->topedge->parent = node;
-			node->incoming_edge = diagram->GetSquare(node->n1, node->n2).top;
+			std::cout << "assigning edge " << diagram->GetSquare(node->n1, node->n2).top->GetStart() << " -- " << diagram->GetSquare(node->n1, node->n2).top->GetEnd() << std::endl;
+			node->topedge->incoming_edge = diagram->GetSquare(node->n1, node->n2).top;
 			return Traverse(node->topedge, path);
 		}
 	}
@@ -106,7 +107,8 @@ PathTree::Node* PathTree::Traverse(Node* node, std::vector<double> &path)
 			node->rightedge->n1 = node->n1;
 			node->rightedge->n2 = node->n2 + 1;
 			node->rightedge->parent = node;
-			node->incoming_edge = diagram->GetSquare(node->n1, node->n2).right;
+			std::cout << "assigning edge " << diagram->GetSquare(node->n1, node->n2).right->GetStart() << " -- " << diagram->GetSquare(node->n1, node->n2).right->GetEnd() << std::endl;
+			node->rightedge->incoming_edge = diagram->GetSquare(node->n1, node->n2).right;
 			return Traverse(node->rightedge, path);
 		}
 	}

@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include <iostream>
+#include <algorithm>
 
 #include <CGAL/Exact_circular_kernel_2.h>
 #include <CGAL/Circular_kernel_intersections.h>
@@ -72,16 +73,15 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	PathTree tree = PathTree(&fs);
 
-	std::string p = "";
-	std::ostringstream os = std::ostringstream();
-	for (double d : tree.FindPath())
+	std::cout << "Path is as follows..." << std::endl;
+	std::vector<PathTree::PathNode> path = tree.FindPath();
+	std::reverse(path.begin(), path.end());
+	for (PathTree::PathNode n : path)
 	{
-		os << " -> " << d;
+		std::cout << "Into " << n.n1 << "," << n.n2 << " through value " << n.entryval << std::endl;
 	}
-	os << std::endl;
-	p = os.str();
 
-	std::cout << "Path: " << p << std::endl;
+
 	std::cout << "Press enter to exit..." << std::endl;
 
 	std::cin.ignore();
