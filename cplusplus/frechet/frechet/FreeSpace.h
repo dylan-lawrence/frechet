@@ -16,9 +16,12 @@ public:
 
 	static double PercentAlongCurve(Circular_arc_point_2 ap, Point_2 curvep1, Point_2 curvep2);
 
+	int n1, n2;
+
+	static double Clamp(double val, double min, double max);
+
 private:
 	FsGridSquare** grid;
-	int n1, n2;
 	CGAL::Gmpq epsilon;
 
 	Point_2* curve1;

@@ -13,6 +13,7 @@
 #include <vector>
 
 #include "FreeSpace.h"
+#include "PathTree.h"
 
 #include "frechet_types.h"
 
@@ -69,9 +70,18 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 	}
 
-	std::cout << fs.GetSquare(0, 0) << std::endl;
-	std::cout << fs.GetSquare(0, 1) << std::endl;
+	PathTree tree = PathTree(&fs);
 
+	std::string p = "";
+	std::ostringstream os = std::ostringstream();
+	for (double d : tree.FindPath())
+	{
+		os << " -> " << d;
+	}
+	os << std::endl;
+	p = os.str();
+
+	std::cout << "Path: " << p << std::endl;
 	std::cout << "Press enter to exit..." << std::endl;
 
 	std::cin.ignore();

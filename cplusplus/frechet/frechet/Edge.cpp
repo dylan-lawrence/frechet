@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Edge.h"
 
-
 Edge::Edge()
 {
 	start = end = 0;

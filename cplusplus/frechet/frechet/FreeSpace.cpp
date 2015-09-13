@@ -13,6 +13,22 @@ double FreeSpace::PercentAlongCurve(Circular_arc_point_2 ap, Point_2 curvep1, Po
 	return std::sqrt(CGAL::to_double((cp1.x() - cp2.x())*(cp1.x() - cp2.x()) + (cp1.y() - cp2.y())*(cp1.y() - cp2.y()) / (cp1.x() - ap.x())*(cp1.x() - ap.x()) + (cp1.y() - ap.y())*(cp1.y() - ap.y())));
 }
 
+double FreeSpace::Clamp(double val, double min, double max)
+{
+	if (val < min)
+	{
+		return min;
+	}
+	else if (val > max)
+	{
+		return max;
+	}
+	else
+	{
+		return val;
+	}
+}
+
 FreeSpace::FreeSpace(int n1i, int n2i, Point_2* c1, Point_2* c2, CGAL::Gmpq eps)
 {
 	n1 = n1i;
@@ -30,7 +46,15 @@ FreeSpace::FreeSpace(int n1i, int n2i, Point_2* c1, Point_2* c2, CGAL::Gmpq eps)
 
 FsGridSquare FreeSpace::GetSquare(int n1i, int n2i)
 {
-	return grid[n1i][n2i];
+	if (n1i >= 0 && n1i < n1 - 1 && n2i >= 0 && n2i < n2 - 1) {
+		return grid[n1i][n2i];
+	}
+	else
+	{
+		//return an empty cell for now
+		std::cout << "Error: index out of bounds" << std::endl;
+		return FsGridSquare();
+	}
 }
 
 void FreeSpace::CalculateSquare(int n1i, int n2i)
@@ -97,9 +121,14 @@ Edge* FreeSpace::CalculateEdge(Point_2 p, Point_2 curvep1, Point_2 curvep2) //cu
 			edge->SetEnd(-1);
 			edge->SetStart(-1);
 		}
+		if ((start > 1 && end > 1) || (start < 0 && end < 0)) //off segment intersections
+		{
+			edge->SetEnd(-1);
+			edge->SetStart(-1);
+		}
 
-		edge->SetEnd(end);
-		edge->SetStart(start);
+		edge->SetEnd(Clamp(end,0,1));
+		edge->SetStart(Clamp(start,0,1));
 	}
 	else
 	{
